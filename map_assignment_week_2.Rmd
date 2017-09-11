@@ -1,0 +1,88 @@
+---
+title: "Map activity"
+author: "Juan Flores"
+date: "September 6, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(leaflet)
+```
+
+## Map with Leaflet
+
+This document is to present a map with some features, done using the leaflet package in R.
+
+
+
+### Data generation
+
+Creating random statistics about health (sick people) for 6 states in the United States.
+
+```{r creating random health data}
+
+StatesHealth <- data.frame(
+  State = c("New York","California","Texas","Washington","Illinois","Georgia"),
+  Population = c(8538000,39250000,27860000,7288000,12800000,10310000),
+  lat = c(42.8920642,36.4919735,31.5036293,46.9952411,40.1998549,32.6023617),
+  lng = c(-76.003418,-119.7070313,-99.0966797,-120.6079102,-89.5001221,-83.2983398),
+  # NY 42.8920642,-76.003418
+  # CA 36.4919735,-119.7070313
+  # TX 31.5036293,-99.0966797
+  # WA 46.9952411,-120.6079102
+  # IL 40.1998549,-89.5001221
+  # GA 32.6023617,-83.2983398
+  PeopleSickPercentage = c(runif(6))*10)
+  PopulationSick <- round(c(StatesHealth$Population*StatesHealth$PeopleSickPercentage/100),0)
+  StatesHealth$PopulationSick <- PopulationSick
+  TotalPopulation <- sum(StatesHealth$Population)
+  
+```
+
+### Assign sickness indicator
+
+Assign colors depending on the population that is sicke on each city, Red for more than or equal to 1000000, Yellow for more than or equal to 500000, and Green for less than 500000.
+
+
+```{r sickness circles, results='hide'}
+
+Red <- 1000000
+Yellow <- 500000
+Colorfun <- function(PopulationSick){
+    if(PopulationSick >= Red) {
+      print("Red")
+    }
+    else {
+      if(PopulationSick >= Yellow){
+        print("Yellow")
+      }
+        else {
+        print("Green")
+        }
+    }
+}
+StatesHealth$ColorOfCircle <- sapply(PopulationSick,"Colorfun")
+```
+
+### Results
+
+Table with the data that will be used for the map.
+
+```{r Final table}
+
+StatesHealth
+```
+
+## Map - Where to focus the healthcare program
+Assessment for the states of California, Georgia, Illinois, New York, Texas, and Washington
+
+#### Date - `r Sys.Date()`
+
+```{r leaflet map, echo=FALSE}
+StatesHealth %>%
+  leaflet() %>%
+    addTiles() %>%
+      addCircleMarkers(radius = StatesHealth$PopulationSick/30000 ,color = StatesHealth$ColorOfCircle, popup = paste("State - ",StatesHealth$State,"<br>", "Sick Population - ",StatesHealth$PopulationSick)) %>%
+        addLegend(labels = c(" > 1,000,000","< 1,000,000 & > 500,000", "< 500,000"), colors = c("Red","Yellow","Green"))
+```
