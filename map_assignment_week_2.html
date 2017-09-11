@@ -134,7 +134,7 @@ $(document).ready(function () {
 
 <div id="map-with-leaflet" class="section level2">
 <h2>Map with Leaflet</h2>
-<p>This document is to present a map with some features, done using the leaflet package in R.</p>
+<p>This document is to present a map with some features, a map created using the leaflet package in R. An sssessment for the states of California, Georgia, Illinois, New York, Texas, and Washington. Using random statistics and displaying the information in a map showing where should the government be focusing the healthcare program.</p>
 <div id="data-generation" class="section level3">
 <h3>Data generation</h3>
 <p>Creating random statistics about health (sick people) for 6 states in the United States.</p>
@@ -156,7 +156,8 @@ $(document).ready(function () {
 </div>
 <div id="assign-sickness-indicator" class="section level3">
 <h3>Assign sickness indicator</h3>
-<p>Assign colors depending on the population that is sicke on each city, Red for more than or equal to 1000000, Yellow for more than or equal to 500000, and Green for less than 500000.</p>
+<p>Colors are assigned depending on the population that is sick on each city:</p>
+<p>Red for more than or equal to 1000000. Yellow for more than or equal to 500000. Green for less than 500000.</p>
 <pre class="r"><code>Red &lt;- 1000000
 Yellow &lt;- 500000
 Colorfun &lt;- function(PopulationSick){
@@ -179,29 +180,28 @@ StatesHealth$ColorOfCircle &lt;- sapply(PopulationSick,&quot;Colorfun&quot;)</co
 <p>Table with the data that will be used for the map.</p>
 <pre class="r"><code>StatesHealth</code></pre>
 <pre><code>##        State Population      lat        lng PeopleSickPercentage
-## 1   New York    8538000 42.89206  -76.00342             0.104218
-## 2 California   39250000 36.49197 -119.70703             5.247697
-## 3      Texas   27860000 31.50363  -99.09668             1.752649
-## 4 Washington    7288000 46.99524 -120.60791             6.493510
-## 5   Illinois   12800000 40.19985  -89.50012             3.024364
-## 6    Georgia   10310000 32.60236  -83.29834             6.698633
+## 1   New York    8538000 42.89206  -76.00342            4.2261024
+## 2 California   39250000 36.49197 -119.70703            0.0922479
+## 3      Texas   27860000 31.50363  -99.09668            6.6345327
+## 4 Washington    7288000 46.99524 -120.60791            3.7118387
+## 5   Illinois   12800000 40.19985  -89.50012            7.6185508
+## 6    Georgia   10310000 32.60236  -83.29834            3.3063358
 ##   PopulationSick ColorOfCircle
-## 1           8898         Green
-## 2        2059721           Red
-## 3         488288         Green
-## 4         473247         Green
-## 5         387119         Green
-## 6         690629        Yellow</code></pre>
+## 1         360825         Green
+## 2          36207         Green
+## 3        1848381           Red
+## 4         270519         Green
+## 5         975175        Yellow
+## 6         340883         Green</code></pre>
 </div>
-</div>
-<div id="map---where-to-focus-the-healthcare-program" class="section level2">
-<h2>Map - Where to focus the healthcare program</h2>
-<p>Assessment for the states of California, Georgia, Illinois, New York, Texas, and Washington</p>
+<div id="map---sick-population" class="section level3">
+<h3>Map - Sick Population</h3>
 <div id="date---2017-09-11" class="section level4">
 <h4>Date - 2017-09-11</h4>
 <pre><code>## Assuming 'lng' and 'lat' are longitude and latitude, respectively</code></pre>
-<div id="htmlwidget-3175c6277196a64f5da6" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3175c6277196a64f5da6">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"maxNativeZoom":null,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"continuousWorld":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[42.8920642,36.4919735,31.5036293,46.9952411,40.1998549,32.6023617],[-76.003418,-119.7070313,-99.0966797,-120.6079102,-89.5001221,-83.2983398],[0.2966,68.6573666666667,16.2762666666667,15.7749,12.9039666666667,23.0209666666667],null,null,{"lineCap":null,"lineJoin":null,"clickable":true,"pointerEvents":null,"className":"","stroke":true,"color":["Green","Red","Green","Green","Green","Yellow"],"weight":5,"opacity":0.5,"fill":true,"fillColor":["Green","Red","Green","Green","Green","Yellow"],"fillOpacity":0.2,"dashArray":null},null,null,["State -  New York <br> Sick Population -  8898","State -  California <br> Sick Population -  2059721","State -  Texas <br> Sick Population -  488288","State -  Washington <br> Sick Population -  473247","State -  Illinois <br> Sick Population -  387119","State -  Georgia <br> Sick Population -  690629"],null,null,null,null]},{"method":"addLegend","args":[{"colors":["Red","Yellow","Green"],"labels":[" > 1,000,000","< 1,000,000 & > 500,000","< 500,000"],"na_color":null,"na_label":"NA","opacity":0.5,"position":"topright","type":"unknown","title":null,"extra":null,"layerId":null,"className":"info legend"}]}],"limits":{"lat":[31.5036293,46.9952411],"lng":[-120.6079102,-76.003418]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a65b893b73dddc03d7fb" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a65b893b73dddc03d7fb">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"maxNativeZoom":null,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"continuousWorld":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[42.8920642,36.4919735,31.5036293,46.9952411,40.1998549,32.6023617],[-76.003418,-119.7070313,-99.0966797,-120.6079102,-89.5001221,-83.2983398],[12.0275,1.2069,61.6127,9.0173,32.5058333333333,11.3627666666667],null,null,{"lineCap":null,"lineJoin":null,"clickable":true,"pointerEvents":null,"className":"","stroke":true,"color":["Green","Green","Red","Green","Yellow","Green"],"weight":5,"opacity":0.5,"fill":true,"fillColor":["Green","Green","Red","Green","Yellow","Green"],"fillOpacity":0.2,"dashArray":null},null,null,["State -  New York <br> Sick Population -  360825","State -  California <br> Sick Population -  36207","State -  Texas <br> Sick Population -  1848381","State -  Washington <br> Sick Population -  270519","State -  Illinois <br> Sick Population -  975175","State -  Georgia <br> Sick Population -  340883"],null,null,null,null]},{"method":"addLegend","args":[{"colors":["Red","Yellow","Green"],"labels":[" > 1,000,000","< 1,000,000 & > 500,000","< 500,000"],"na_color":null,"na_label":"NA","opacity":0.5,"position":"topright","type":"unknown","title":null,"extra":null,"layerId":null,"className":"info legend"}]}],"limits":{"lat":[31.5036293,46.9952411],"lng":[-120.6079102,-76.003418]}},"evals":[],"jsHooks":[]}</script>
+</div>
 </div>
 </div>
 
